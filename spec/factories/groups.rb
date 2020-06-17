@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :group do
-    slug { "MyString" }
-    team { nil }
-    owner { nil }
+    slug { Faker::Internet.slug }
+    team
+    owner
   end
 end
