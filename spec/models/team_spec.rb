@@ -15,8 +15,11 @@ RSpec.describe Team, type: :model do
         @team.owner = nil
       end
       it 'is invalid when the slug is already in use' do
-        create(:team, slug: 'some_nice_slug')
-        @team.slug = 'some_nice_slug'
+        create(:team, slug: 'someniceslug')
+        @team.slug = 'someniceslug'
+      end
+      it 'is invalid when slug has invalid chars' do
+        @team.slug = 'some_invali_Ç98123'
       end
     end
     context 'when params ar ok' do

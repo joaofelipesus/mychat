@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :group do
-    slug  { Faker::Internet.slug }
+    slug  { 'someSlug' }
     team  { Team.last }
     owner { User.last }
   end
