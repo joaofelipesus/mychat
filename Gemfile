@@ -23,9 +23,9 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
-#Flexible authentication solution for Rails with Warden
+# Flexible authentication solution for Rails with Warden
 gem 'devise'
-#The authorization Gem for Ruby on Rails.
+# The authorization Gem for Ruby on Rails.
 gem 'cancancan'
 
 # Reduces boot times through caching; required in config/boot.rb
@@ -34,6 +34,12 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec for Rails 5+
+  gem 'rspec-rails', '~> 4.0.0'
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
+  # Factory Bot hearts Rails
+  gem 'factory_bot_rails'
 end
 
 group :development do
