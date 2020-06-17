@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :group_user do
-    user { nil }
-    group { nil }
-    invite_status { 1 }
+    user { User.last }
+    group { Group.last }
+    invite_status { :pending }
   end
 end
