@@ -1,0 +1,4 @@
+class Group < ApplicationRecord
+  belongs_to :team
+  belongs_to :owner, class_name: :User
+end
