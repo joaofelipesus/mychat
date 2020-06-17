@@ -21,9 +21,12 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
+# Flexible authentication solution for Rails with Warden
+gem 'devise'
+# The authorization Gem for Ruby on Rails.
+gem 'cancancan'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -31,6 +34,14 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec for Rails 5+
+  gem 'rspec-rails', '~> 4.0.0'
+  # A library for generating fake data such as names, addresses, and phone numbers.
+  gem 'faker'
+  # Factory Bot hearts Rails
+  gem 'factory_bot_rails'
+  # help to kill N+1 queries and unused eager loading
+  gem 'bullet'
 end
 
 group :development do
