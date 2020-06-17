@@ -23,10 +23,13 @@ RSpec.describe Group, type: :model do
         create(:group, slug: 'nerv')
         @group.slug = 'nerv'
       end
+      it 'is invalid when slug isnt formed only by chars' do
+        @group.slug = 'N.E.R.V_Unity_02'
+      end
     end
     context 'a group is valid' do
       it 'is expected to be_valid when its slug isnt already in use' do
-        @group.slug = 'some_unused_slug'
+        @group.slug = 'someunusedslug'
         expect(@group).to be_valid
       end
     end
