@@ -40,6 +40,8 @@ group :development, :test do
   gem 'faker'
   # Factory Bot hearts Rails
   gem 'factory_bot_rails'
+  # help to kill N+1 queries and unused eager loading
+  gem 'bullet'
 end
 
 group :development do
