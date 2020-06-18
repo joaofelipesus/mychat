@@ -9,6 +9,7 @@ class Ability
         user.my_teams.include?(team)
       end
       can :create, Team
+      can :destroy, Team, owner_id: user.id
     end
   end
 end

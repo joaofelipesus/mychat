@@ -14,6 +14,16 @@ class TeamsController < ApplicationController
     end
   end
 
+  def destroy
+    @team = Team.find params[:id]
+    authorize! :destroy, @team
+    if @team.destroy
+      render json: {}, status: :ok
+    else
+      render json: { errors: @team.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def team_params
