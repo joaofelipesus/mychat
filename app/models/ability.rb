@@ -8,6 +8,7 @@ class Ability
       can :read, Team do |team|
         user.my_teams.include?(team)
       end
+      can :create, Team
     end
   end
 end
