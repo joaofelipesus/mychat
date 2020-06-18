@@ -1,0 +1,25 @@
+<nav class="green lighten-1">
+  <div class="nav-wrapper">
+    <%= link_to root_path, class: 'brand-logo', data: { turbolinks: false } do %>
+      MyChat <span class="material-icons">message</span>
+    <% end %>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <%= link_to "Perfil", edit_user_registration_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <li>
+    <%= link_to "Perfil", edit_user_registration_path(current_user) %>
+  </li>
+  <li>
+    <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+  </li>
+</ul>
