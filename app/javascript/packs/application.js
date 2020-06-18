@@ -5,6 +5,7 @@
 
 import 'materialize-css/dist/js/materialize'
 
+require('packs/navbars/navbar')
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
