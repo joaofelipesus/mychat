@@ -4,7 +4,9 @@
 // that code so it'll be compiled.
 
 import 'materialize-css/dist/js/materialize'
+import 'jquery/dist/jquery'
 
+require('packs/teams/new_modal')
 require('packs/navbars/navbar')
 require("@rails/ujs").start()
 require("turbolinks").start()

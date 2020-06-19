@@ -1,12 +1,13 @@
 <%= render 'navbars/navbar' %>
 
 <% if current_user.my_teams.empty? %>
+  <%= render 'new_modal' %>
   <div class="container">
     <div class="center-align z-depth-2" style="padding: 3%; margin-top: 15%;">
       <p class="flow-text">
         We notice that you doesn't be a member or owner of a team, to start talking with your cologues create a new team.
       </p>
-      <button class="btn">
+      <button data-target="new-team-modal" class="btn modal-trigger">
         New team
       </button>
     </div>
