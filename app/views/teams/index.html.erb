@@ -1,5 +1,32 @@
 <%= render 'navbars/navbar' %>
 
-
-<h1>Team#index</h1>
-<p>Find me in app/views/team/index.html.erb</p>
+<% if current_user.my_teams.empty? %>
+  <%= render 'new_modal' %>
+  <div class="container">
+    <div class="center-align z-depth-2" style="padding: 3%; margin-top: 15%;">
+      <p class="flow-text">
+        We notice that you doesn't be a member or owner of a team, to start talking with your cologues create a new team.
+      </p>
+      <button data-target="new-team-modal" class="btn modal-trigger">
+        New team
+      </button>
+    </div>
+  </div>
+<% else %>
+  <div class="container center">
+    <h3 class="center">My groups <span class="material-icons">group</span></h3>
+    <% current_user.my_teams.each do |team| %>
+      <div class="row">
+        <div class="col s12 m4 offset-m4">
+          <div class="card">
+            <div class="card-content teal darken-2" style="margin-top: 2.5%;">
+              <%= link_to team, class: 'card-title white-text' do %>
+                <%= team.slug %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

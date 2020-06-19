@@ -1,0 +1,20 @@
+<div id="new-team-modal" class="modal">
+  <div class="modal-content">
+    <h4>Modal Header</h4>
+    <div>
+      <%= form_with model: Team.new, id: 'new-team-form' do |form| %>
+        <div style="padding: 2.5%;">
+          <div class="field">
+            <div class="input-field">
+              <%= form.text_field :slug, required: true, autofocus: true %>
+              <%= form.label :slug %>
+            </div>
+          </div>
+          <button class="btn">
+            Save
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
