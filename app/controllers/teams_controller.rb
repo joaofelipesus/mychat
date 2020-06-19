@@ -24,6 +24,11 @@ class TeamsController < ApplicationController
     end
   end
 
+  def show
+    p params
+    @team = Team.find_by slug: params[:slug]
+  end
+
   private
 
     def team_params
