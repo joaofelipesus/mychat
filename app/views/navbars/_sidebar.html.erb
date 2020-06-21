@@ -11,6 +11,9 @@
         <% else %>
           <%= link_to team.slug, show_team_path(team.slug) %>
         <% end %>
+        <% if team.owner == current_user %>
+          <a href="#destroy-team-modal" class="red-text right destroy-team modal-trigger" data-value='<%= team.id %>'>Destroy</a>
+        <% end %>
       </li>
     <% end %>
   </ul>
