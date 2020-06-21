@@ -25,8 +25,8 @@ class TeamsController < ApplicationController
   end
 
   def show
-    p params
     @team = Team.find_by slug: params[:slug]
+    authorize! :read, @team
   end
 
   private
