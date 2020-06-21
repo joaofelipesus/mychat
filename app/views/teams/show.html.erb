@@ -1,2 +1,35 @@
-<h1>Team#show</h1>
-<p>Find me in app/views/team/show.html.erb</p>
+<%= render 'navbars/navbar' %>
+
+<div class="row" style="margin-top: 0px;">
+  <div class="col s2">
+    <h5 class="center">
+      Teams
+    </h5>
+    <hr>
+    <ul class="" style="margin-top: 0px;">
+      <% current_user.my_teams.each do |team| %>
+        <li class="center">
+          <% if params[:slug] == team.slug %>
+            <%= link_to team.slug, show_team_path(team.slug), class: 'green-text' %>
+          <% else %>
+            <%= link_to team.slug, show_team_path(team.slug) %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <hr>
+    <h5 class="center">
+      Groups
+    </h5>
+    <ul>
+      <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
+        <li class="center">
+          <%= group.slug %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col s10 green">
+    <h1 class="center">Conteúdo</h1>
+  </div>
+</div>
