@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe "Teams", type: :request do
 
-=begin
   describe "GET /index" do
     context 'when user is logged in' do
       it 'is expected to return :success' do
@@ -55,7 +54,7 @@ RSpec.describe "Teams", type: :request do
       end
     end
   end
-=end
+
   describe 'DELETE a team' do
     context 'when user are logged in' do
       before :each do
