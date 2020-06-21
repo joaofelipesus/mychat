@@ -1,0 +1,28 @@
+<div class="col s2">
+  <h5 class="center">
+    Teams
+  </h5>
+  <hr>
+  <ul class="" style="margin-top: 0px;">
+    <% current_user.my_teams.each do |team| %>
+      <li class="center">
+        <% if params[:slug] == team.slug %>
+          <%= link_to team.slug, show_team_path(team.slug), class: 'green-text' %>
+        <% else %>
+          <%= link_to team.slug, show_team_path(team.slug) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+  <hr>
+  <h5 class="center">
+    Groups
+  </h5>
+  <ul>
+    <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
+      <li class="center">
+        <%= group.slug %>
+      </li>
+    <% end %>
+  </ul>
+</div>
