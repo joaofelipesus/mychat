@@ -10,6 +10,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find params[:id]
+    authorize! :destroy, @group
+    if @group.destroy
+      render json: {}, status: :ok
+    else
+      render json: { errors: @group.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def group_params

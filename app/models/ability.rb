@@ -13,6 +13,9 @@ class Ability
       can :create, Group do |group|
         group.owner_id == user.id
       end
+      can :destroy, Group do |group|
+        group.owner_id == user.id
+      end
     end
   end
 end

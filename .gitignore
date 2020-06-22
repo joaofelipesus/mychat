@@ -34,3 +34,15 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+._Dockerfile
+._Gemfile
+._Gemfile.lock
+._README.md
+._Rakefile
+._babel.config.js
+._config.ru
+._docker-compose.yml
+._package.json
+._postcss.config.js
+._start.sh
