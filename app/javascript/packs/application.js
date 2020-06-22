@@ -6,6 +6,7 @@
 import 'materialize-css/dist/js/materialize'
 import 'jquery/dist/jquery'
 
+require('packs/groups/new_modal')
 require('packs/teams/destroy_modal')
 require('packs/teams/new_modal')
 require('packs/navbars/navbar')

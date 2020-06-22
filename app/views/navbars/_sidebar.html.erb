@@ -27,5 +27,13 @@
         <%= group.slug %>
       </li>
     <% end %>
+    <li class="divider"></li>
   </ul>
+  <div class="center">
+    <button class="btn modal-trigger" data-target="new-group-modal">
+      New group
+    </button>
+  </div>
 </div>
+
+<%= render 'groups/new_modal' %>

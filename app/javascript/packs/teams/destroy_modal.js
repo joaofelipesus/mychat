@@ -7,7 +7,6 @@ $(document).on("turbolinks:load", () => {
     $('#btn-destroy-team').attr('data-value', team_id)
   })
 
-
   $('#btn-destroy-team').on('click', event => {
     const team_id = $(event.target).attr('data-value')
     $.ajax({

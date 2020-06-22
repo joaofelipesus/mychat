@@ -1,0 +1,17 @@
+<div id="new-group-modal" class="modal">
+  <div class="modal-content">
+    <h4>New team</h4>
+    <%= form_with model: Group.new, remote: true, id: 'new-group-form' do |form| %>
+      <div class="field">
+        <div class="input-field">
+          <%= form.label :slug %>
+          <%= form.text_field :slug, autofocus: true %>
+        </div>
+        <%= form.hidden_field :team_id, value: @team.id %>
+      </div>
+      <button class="btn">
+        Save
+      </button>
+    <% end %>
+  </div>
+</div>
