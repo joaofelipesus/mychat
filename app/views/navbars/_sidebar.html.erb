@@ -21,7 +21,7 @@
   <h5 class="center">
     Groups
   </h5>
-  <ul>
+  <ul id="user-groups">
     <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
       <li class="center" id="group-<%= group.id%>">
         <span class='group-slug'><%= group.slug %></span>
@@ -30,8 +30,8 @@
         <% end %>
       </li>
     <% end %>
-    <li class="divider"></li>
   </ul>
+  <hr>
   <div class="center">
     <button class="btn modal-trigger" data-target="new-group-modal">
       New group
