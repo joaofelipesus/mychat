@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :teams, through: :team_users
 
   def my_teams
-    Team.where(owner: self) + self.teams
+    Team.where(owner: self).includes(:owner) + self.teams.includes(:owner)
   end
 
 end

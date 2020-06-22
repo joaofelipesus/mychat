@@ -8,6 +8,12 @@
     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li>
+        <a class="modal-trigger" data-target="new-team-modal">New Team</a>
+      </li>
+      <li>
+        <a class="dropdown-trigger" href="#" data-target="dropdown1">My teams<i class="material-icons right">arrow_drop_down</i></a>
+      </li>
+      <li>
         <%= link_to "Perfil", edit_user_registration_path(current_user) %>
       </li>
       <li>
@@ -24,4 +30,14 @@
   <li>
     <%= link_to "Logout", destroy_user_session_path, method: :delete %>
   </li>
+</ul>
+
+
+<ul id="dropdown1" class="dropdown-content">
+  <% current_user.my_teams.each do |team| %>
+    <li>
+      <%= link_to team.slug, show_team_path(slug: team.slug), data: { turbolinks: false } %>
+    </li>
+  <% end %>
+  <li class="divider"></li>
 </ul>
