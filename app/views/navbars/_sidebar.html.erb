@@ -23,8 +23,11 @@
   </h5>
   <ul>
     <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
-      <li class="center">
-        <%= group.slug %>
+      <li class="center" id="group-<%= group.id%>">
+        <span class='group-slug'><%= group.slug %></span>
+        <% if group.owner_id == current_user.id %>
+          <a href="#destroy-group-modal" class="red-text right modal-trigger destroy-group" data-value="<%= group.id %>">Destroy</a>
+        <% end %>
       </li>
     <% end %>
     <li class="divider"></li>
@@ -37,3 +40,4 @@
 </div>
 
 <%= render 'groups/new_modal' %>
+<%= render 'groups/destroy_modal' %>
