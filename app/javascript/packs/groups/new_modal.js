@@ -1,3 +1,13 @@
+function append_new_group(team){
+  $('#user-groups').append(`
+      <li class="center">
+        ${team.slug}
+        <span class="blue-text right">New !</span>
+      </li>
+
+    `)
+}
+
 $(document).on("turbolinks:load", () => {
   $('.modal').modal();
 
@@ -6,6 +16,7 @@ $(document).on("turbolinks:load", () => {
     M.toast({ html: 'Group created !', classes: 'green' })
     var instance = M.Modal.getInstance($('#new-group-modal'));
     instance.close()
+    append_new_group(data["group"])
   })
 
   $('#new-group-form').on('ajax:error', response => {
