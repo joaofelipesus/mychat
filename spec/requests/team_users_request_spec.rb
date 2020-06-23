@@ -62,7 +62,47 @@ RSpec.describe "TeamUsers", type: :request do
         expect(response).to have_http_status :found
       end
     end
+  end
 
+  describe '#destroy' do
+    before :each do
+      @current_user = create(:user)
+      team_owner = create(:user)
+      create(:team, owner: team_owner)
+      @team_user = create(:team_user, user: @current_user)
+    end
+    context 'when current user isnt the same user of the invite' do
+      before :each do
+        @other_user = create(:user)
+        sign_in @other_user
+        delete "/team_users/#{@team_user.id}"
+      end
+      it 'is expected to return status forbidden' do
+        expect(response).to have_http_status :forbidden
+      end
+    end
+    context 'when current user is the user of the invite' do
+      before :each do
+        sign_in @current_user
+        delete "/team_users/#{@team_user.id}"
+      end
+      it 'is expected to return status :ok' do
+        expect(response).to have_http_status :ok
+      end
+      it 'is expected to destroy invite' do
+        expect(TeamUser.count).to eq 0
+      end
+    end
+    context 'if invite status isnt pending' do
+      before :each do
+        sign_in @current_user
+        @team_user.update inviting_status: :confirmed
+        delete "/team_users/#{@team_user.id}"
+      end
+      it 'is expected to return :forbidden' do
+        expect(response).to have_http_status :forbidden
+      end
+    end
   end
 
 end
