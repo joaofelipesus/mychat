@@ -105,4 +105,57 @@ RSpec.describe "TeamUsers", type: :request do
     end
   end
 
+  describe 'accept invite' do
+    before :each do
+      @current_user = create(:user)
+      team_owner = create(:user)
+      create(:team, owner: team_owner)
+      @team_user = create(:team_user, user: @current_user)
+    end
+    context 'when user is logged in' do
+      before :each do
+        sign_in @current_user
+      end
+      context 'when current user isnt the user of the invite' do
+        before :each do
+          sign_out @current_user
+          sign_in create(:user)
+          patch "/team_users/#{@team_user.id}", params: { team_user: { inviting_status: :confirmed }}
+        end
+        it 'is expected to return :forbidden status' do
+          expect(response).to have_http_status :forbidden
+        end
+      end
+      context 'when invite is already confirmed' do
+        before :each do
+          @team_user.update inviting_status: :confirmed
+          patch "/team_users/#{@team_user.id}", params: { team_user: { inviting_status: :confirmed }}
+        end
+        it 'is expected to return status :forbidden' do
+          expect(response).to have_http_status :forbidden
+        end
+      end
+      context 'when params are ok' do
+        before :each do
+          patch "/team_users/#{@team_user.id}", params: { team_user: { inviting_status: :confirmed }}
+        end
+        it 'is expected to return status :ok' do
+          expect(response).to have_http_status :ok
+        end
+        it 'is expected to change inviting_status to :confirmed' do
+          response_body = JSON.parse response.body
+          expect(response_body["team_user"]["inviting_status"]).to match "confirmed"
+        end
+      end
+    end
+    context 'when user isnt logged in' do
+      before :each do
+        patch "/team_users/#{@team_user.id}", params: { team_user: { inviting_status: :confirmed }}
+      end
+      it 'is expected to return found status' do
+        expect(response).to have_http_status :found
+      end
+    end
+  end
+
 end
