@@ -36,7 +36,6 @@
           <% if group.owner_id == current_user.id %>
             <!-- <a href="#destroy-group-modal" class="red-text modal-trigger destroy-group" data-value="<%= group.id %>">Destroy</a> -->
           <% end %>
-        </li>
       <% end %>
     </ul>
   </div>
@@ -65,13 +64,12 @@
       <% end %>
     </ul>
 
-    <button class="btn blue">
+    <button class="btn blue modal-trigger" data-target="new-team-user-modal">
       Add memeber
     </button>
   </div>
-
-
 </div>
 
 <%= render 'groups/new_modal' %>
 <%= render 'groups/destroy_modal' %>
+<%= render 'team_users/new_modal' %>

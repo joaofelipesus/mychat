@@ -46,6 +46,6 @@ yarn-debug.log*
 ._package.json
 ._postcss.config.js
 ._start.sh
-
+._.
 
 *.DS_Store

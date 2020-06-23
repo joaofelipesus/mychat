@@ -8,6 +8,10 @@ class Team < ApplicationRecord
   has_many :team_users, dependent: :destroy
   has_many :users, through: :team_users
 
+  def aviable_users
+    User.all - self.users - [self.owner]
+  end
+
   private
 
     def generate_general_channel
