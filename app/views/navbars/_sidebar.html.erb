@@ -7,9 +7,9 @@
     <% current_user.my_teams.each do |team| %>
       <li class="center">
         <% if params[:slug] == team.slug %>
-          <%= link_to team.slug, show_team_path(team.slug), class: 'green-text' %>
+          <%= link_to team.slug, show_team_path(team.slug), class: 'green-text', data: { turbolinks: false } %>
         <% else %>
-          <%= link_to team.slug, show_team_path(team.slug) %>
+          <%= link_to team.slug, show_team_path(team.slug), data: { turbolinks: false } %>
         <% end %>
         <% if team.owner == current_user %>
           <a href="#destroy-team-modal" class="red-text right destroy-team modal-trigger" data-value='<%= team.id %>'>Destroy</a>
