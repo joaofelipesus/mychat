@@ -6,6 +6,7 @@ class Team < ApplicationRecord
   validates_uniqueness_of :slug
   validates_format_of :slug, with: /\A[a-zA-Z0-9]+\Z/
   has_many :team_users, dependent: :destroy
+  has_many :users, through: :team_users
 
   private
 
