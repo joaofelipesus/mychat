@@ -16,6 +16,12 @@ class Ability
       can :destroy, Group do |group|
         group.owner_id == user.id
       end
+      can :create, TeamUser do |team_user|
+        team_user.team.owner_id == user.id
+      end
+      can [:destroy, :update], TeamUser do |team_user|
+        team_user.user == user and team_user.pending?
+      end
     end
   end
 end
