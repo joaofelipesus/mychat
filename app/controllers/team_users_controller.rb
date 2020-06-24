@@ -5,7 +5,7 @@ class TeamUsersController < ApplicationController
     @team_users = current_user.team_users.pending
     unless @team_users.empty?
       authorize! :read, @team_users.last
-      render json: { team_user: @team_users.last }, status: :ok
+      render json: { team_user: @team_users.last }, status: :ok, include: [team: { only: [:slug]}]
     else
       render json: {}, status: :not_found
     end

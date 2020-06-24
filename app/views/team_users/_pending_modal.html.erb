@@ -1,14 +1,10 @@
-<% invite = current_user.team_users.pending.last %>
-<% if invite %>
-  <span id="pending-invite"><%= invite.id %></span>
-<% end %>
-
-<div id="pending-invite-modal" class="modal">
+<div id="modal1" class="modal">
   <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    <h4>Hello, you have a inviting to be a member of <span id="team-invite-slug"></span></h4>
+    <p>Do you accept ou decnline it?</p>
+    <div class="container">
+      <button class="btn">Accept</button>
+      <button class="btn red right">Decline</button>
+    </div>
   </div>
 </div>
