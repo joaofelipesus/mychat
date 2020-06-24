@@ -47,5 +47,6 @@ yarn-debug.log*
 ._postcss.config.js
 ._start.sh
 ._.
-
+app/jobs/._application_job.rb
+app/jobs/._team_user_job.rb
 *.DS_Store
