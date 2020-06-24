@@ -16,6 +16,6 @@ class TeamUser < ApplicationRecord
     end
 
     def send_confirmation_mail
-      TeamUserMailer.new_invite(self).deliver_now!
+      TeamUserJob.perform_later self
     end
 end
