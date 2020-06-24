@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Hello <%= @team_user.user.name %></h1>
+    <p>
+      You have received a invitation to be a member of <%= @team_user.team.slug %>.
+      Click on this <%= link_to "link", root_url %> to accept or decline it.
+    </p>
+  </body>
+</html>
