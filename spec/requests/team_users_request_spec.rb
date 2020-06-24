@@ -157,5 +157,36 @@ RSpec.describe "TeamUsers", type: :request do
       end
     end
   end
+  describe 'list current user invites' do
+    before :each do
+      @current_user = create(:user)
+      team_owner = create(:user)
+      create(:team, owner: team_owner)
+      @current_user
+      sign_in @current_user
+    end
+    context 'when user has team_user pending' do
+      before :each do
+        create(:team_user, user: @current_user)
+        get "/team_users"
+      end
+      it 'is expected to render the least team_user' do
+        response_body = JSON.parse response.body
+        expect(response_body["team_user"]["id"]).to match TeamUser.last.id
+      end
+      it 'is expected to return status :found' do
+        expect(response).to have_http_status :ok
+      end
+    end
+    context "when user doesnt have pending team_user" do
+      before :each do
+        create(:team_user, user: @current_user, inviting_status: :confirmed)
+        get "/team_users"
+      end
+      it 'is expected to return status :not_found' do
+        expect(response).to have_http_status :not_found
+      end
+    end
+  end
 
 end

@@ -6,6 +6,7 @@
 import 'materialize-css/dist/js/materialize'
 import 'jquery/dist/jquery'
 
+require('packs/team_users/pending_modal')
 require('packs/team_users/new_modal')
 require('packs/groups/destroy_modal')
 require('packs/groups/new_modal')

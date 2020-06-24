@@ -22,6 +22,9 @@ class Ability
       can [:destroy, :update], TeamUser do |team_user|
         team_user.user == user and team_user.pending?
       end
+      can :read, TeamUser do |team_user|
+        team_user.user == user
+      end
     end
   end
 end

@@ -1,6 +1,16 @@
 class TeamUsersController < ApplicationController
   before_action :set_team_user, only: [:destroy, :update]
 
+  def index
+    @team_users = current_user.team_users.pending
+    unless @team_users.empty?
+      authorize! :read, @team_users.last
+      render json: { team_user: @team_users.last }, status: :ok
+    else
+      render json: {}, status: :not_found
+    end
+  end
+
   def create
     @team_user = TeamUser.new team_user_params
     authorize! :create, @team_user
