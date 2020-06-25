@@ -25,6 +25,9 @@ class Ability
       can :read, TeamUser do |team_user|
         team_user.user == user
       end
+      can :create, Message do |message|
+        user.my_teams.include? message.group.team
+      end
     end
   end
 end
