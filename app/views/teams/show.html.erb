@@ -2,7 +2,17 @@
 
 <div class="row" style="margin-top: 0px;">
   <%= render 'navbars/sidebar' %>
-  <div class="col s10 green">
-    <h1 class="center">Conteúdo</h1>
+  <div class="col s10">
+    <h1 id="current-group-name" class="center">General</h1>
+
+    <div class="input-field col offset-m1 m10 s12" style="overflow: auto; height: 30em; border: 0.08em solid #4caf50;"></div>
+
+    <div class="container">
+      <%= form_with remote: true do |form| %>
+        <div class="input-field">
+          <%= form.text_area :body, class: 'materialize-textarea', placeholder: 'New message' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
