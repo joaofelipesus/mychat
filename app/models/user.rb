@@ -7,7 +7,8 @@ class User < ApplicationRecord
   has_many :teams, through: :team_users
 
   def my_teams
-    Team.where(owner: self).includes(:owner) + self.teams.includes(:owner)
+    memeber_teams =  self.team_users.confirmed.map { |team_user| team_user.team_id }
+    Team.where(owner: self) + Team.where(id: memeber_teams)
   end
 
 end

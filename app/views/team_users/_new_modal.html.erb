@@ -1,0 +1,19 @@
+<div id="new-team-user-modal" class="modal">
+  <div class="modal-content">
+    <h4>Invite new user</h4>
+    <div>
+      <%= form_with model: TeamUser.new, remote: true, id: 'new-team-user-form' do |form| %>
+        <div class="field">
+          <div class='input-field'>
+            <%= form.select :user_id, options_from_collection_for_select(@team.aviable_users, "id", "name") %>
+            <%= form.label "User" %>
+          </div>
+          <%= form.hidden_field :team_id, value: @team.id %>
+        </div>
+        <button class="btn">
+          Send invite
+        </button>
+      <% end %>
+    </div>
+  </div>
+</div>

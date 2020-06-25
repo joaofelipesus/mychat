@@ -1,5 +1,3 @@
-<%= render 'teams/destroy_modal' %>
-
 <nav class="green lighten-1">
   <div class="nav-wrapper">
     <%= link_to root_path, class: 'brand-logo', data: { turbolinks: false } do %>
@@ -41,3 +39,6 @@
   <% end %>
   <li class="divider"></li>
 </ul>
+
+<%= render 'teams/destroy_modal' %>
+<%= render 'team_users/pending_modal' %>

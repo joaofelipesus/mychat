@@ -7,9 +7,9 @@
     <% current_user.my_teams.each do |team| %>
       <li class="center">
         <% if params[:slug] == team.slug %>
-          <%= link_to team.slug, show_team_path(team.slug), class: 'green-text' %>
+          <%= link_to team.slug, show_team_path(team.slug), class: 'green-text', data: { turbolinks: false } %>
         <% else %>
-          <%= link_to team.slug, show_team_path(team.slug) %>
+          <%= link_to team.slug, show_team_path(team.slug), data: { turbolinks: false } %>
         <% end %>
         <% if team.owner == current_user %>
           <a href="#destroy-team-modal" class="red-text right destroy-team modal-trigger" data-value='<%= team.id %>'>Destroy</a>
@@ -18,26 +18,60 @@
     <% end %>
   </ul>
   <hr>
-  <h5 class="center">
-    Groups
-  </h5>
-  <ul id="user-groups">
-    <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
-      <li class="center" id="group-<%= group.id%>">
-        <span class='group-slug'><%= group.slug %></span>
-        <% if group.owner_id == current_user.id %>
-          <a href="#destroy-group-modal" class="red-text right modal-trigger destroy-group" data-value="<%= group.id %>">Destroy</a>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+
+  <div class="center">
+    <a href="#" data-target="team-groups" class="black-text center dropdown-trigger">
+      <h5>
+        Groups
+        <span class="material-icons">
+          arrow_drop_down
+        </span>
+      </h5>
+    </a>
+
+    <ul id='team-groups' class='dropdown-content'>
+      <% Team.includes(:groups).find_by(slug: params[:slug]).groups.each do |group| %>
+        <li class="center" id="group-<%= group.id%>">
+          <span class='group-slug'><%= group.slug %></span>
+          <% if group.owner_id == current_user.id %>
+            <!-- <a href="#destroy-group-modal" class="red-text modal-trigger destroy-group" data-value="<%= group.id %>">Destroy</a> -->
+          <% end %>
+      <% end %>
+    </ul>
+  </div>
+
   <hr>
   <div class="center">
     <button class="btn modal-trigger" data-target="new-group-modal">
       New group
     </button>
   </div>
+
+  <hr>
+
+  <div class="center">
+    <h5>Members</h5>
+    <ul>
+      <li>
+        <span class="green-text">
+          <%= @team.owner.name %>
+        </span>
+      </li>
+      <% @team.users.each do |user| %>
+        <li>
+          <%= user.name %>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if @team.owner == current_user %>
+      <button class="btn blue modal-trigger" data-target="new-team-user-modal">
+        Add memeber
+      </button>
+    <% end %>
+  </div>
 </div>
 
 <%= render 'groups/new_modal' %>
 <%= render 'groups/destroy_modal' %>
+<%= render 'team_users/new_modal' %>
