@@ -10,11 +10,11 @@ function send_message(){
     data: { message: message },
     method: 'POST',
     success: response => {
-      console.log(response);
+      $('#message_body').val('')
+      // TODO: Load message to chat ...
     },
     error: response => {
-      console.log('Errrooooooo');
-      console.log(response)
+      M.toast({ html: response["errors"][0], classes: 'red' })
     }
   })
 }
