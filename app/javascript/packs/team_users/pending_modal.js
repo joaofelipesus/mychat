@@ -6,14 +6,29 @@ $(document).on("turbolinks:load", () => {
     url: '/team_users',
     dataType: 'json',
     success: response => {
-      console.log(response);
       const invite = response["team_user"]
       $("#team-invite-slug").text(invite["team"]["slug"])
-       $('#modal1').modal('open');
-    },
-    error: error => {
-      console.log(error);
+      $('#new-invite-modal').modal('open')
+      $('#accept-invite').attr('data-value', invite.id)
+      $('#decline-invite').attr('data-value', invite.id)
     }
+  })
+
+  $('#accept-invite').on('click', event => {
+    const team_user_id = $(event.target).attr('data-value')
+    $.ajax({
+      url: `/team_users/${team_user_id}`,
+      method: 'PATCH',
+      data: { team_user: { inviting_status: "confirmed" } },
+      dataType: 'json',
+      success: response => {
+        M.toast({ html: 'Invite successful accepted', classes: 'green' })
+        $('#new-invite-modal').modal('close')
+      },
+      error: response => {
+        M.toast({ html: response["errors"][0], classes: 'red' })
+      }
+    })
   })
 
 })

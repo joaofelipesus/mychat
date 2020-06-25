@@ -13,6 +13,7 @@ $(document).on("turbolinks:load", () => {
 
     $('#new-team-user-form').on('ajax:error', response => {
         let errors = response.detail[0]
+        console.log(errors);
         M.toast({ html: errors["errors"][0], classes: 'red' })
     })
 
