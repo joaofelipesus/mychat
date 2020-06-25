@@ -1,5 +1,11 @@
 class MessagesController < ApplicationController
 
+  def index
+    @messages = Message.where(group_id: params[:group]).order(:created_at)
+    authorize! :read, @messages.last
+    render json: { messages: @messages }, status: :ok
+  end
+
   def create
     @message = Message.new message_params
     authorize! :create, @message
