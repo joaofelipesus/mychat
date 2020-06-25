@@ -22,8 +22,9 @@ $(document).on("turbolinks:load", () => {
       data: { team_user: { inviting_status: "confirmed" } },
       dataType: 'json',
       success: response => {
-        M.toast({ html: 'Invite accepted', classes: 'green' })
-        $('#new-invite-modal').modal('close')
+        console.log(response);
+        const new_team_slug = response["team_user"]["team"]["slug"]
+        window.location.replace(`/${new_team_slug}`);
       },
       error: response => {
         M.toast({ html: response["errors"][0], classes: 'red' })

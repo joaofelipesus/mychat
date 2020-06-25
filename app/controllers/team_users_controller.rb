@@ -33,7 +33,7 @@ class TeamUsersController < ApplicationController
   def update
     authorize! :update, @team_user
     if @team_user.update team_user_params
-      render json: { team_user: @team_user }, status: :ok
+      render json: { team_user: @team_user }, status: :ok, include: [team: { only: [:slug] }]
     else
       render json: { errors: @team_user.errors.full_messages }, status: :unprocessable_entity
     end

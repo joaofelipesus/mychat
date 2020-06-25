@@ -51,6 +51,7 @@ RSpec.describe "TeamUsers", type: :request do
           expect(team_user["team_id"]).to match Team.last.id
           expect(team_user["user_id"]).to match @other_user.id
           expect(team_user["inviting_status"]).to match "pending"
+          expect(team_user["team"]["slug"]).to match Team.last.slug
         end
       end
     end
