@@ -64,9 +64,11 @@
       <% end %>
     </ul>
 
-    <button class="btn blue modal-trigger" data-target="new-team-user-modal">
-      Add memeber
-    </button>
+    <% if @team.owner == current_user %>
+      <button class="btn blue modal-trigger" data-target="new-team-user-modal">
+        Add memeber
+      </button>
+    <% end %>
   </div>
 </div>
 
