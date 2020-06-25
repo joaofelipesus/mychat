@@ -51,7 +51,6 @@ RSpec.describe "TeamUsers", type: :request do
           expect(team_user["team_id"]).to match Team.last.id
           expect(team_user["user_id"]).to match @other_user.id
           expect(team_user["inviting_status"]).to match "pending"
-          expect(team_user["team"]["slug"]).to match Team.last.slug
         end
       end
     end
@@ -146,6 +145,7 @@ RSpec.describe "TeamUsers", type: :request do
         it 'is expected to change inviting_status to :confirmed' do
           response_body = JSON.parse response.body
           expect(response_body["team_user"]["inviting_status"]).to match "confirmed"
+          expect(response_body["team_user"]["team"]["slug"]).to match Team.last.slug
         end
       end
     end
