@@ -7,7 +7,11 @@ class Message < ApplicationRecord
   private
 
     def broadcast_message
-      ActionCable.server.broadcast("chat_channel", self)
+      ActionCable.server.broadcast("chat_channel", {
+        user: self.user,
+        body: self.body,
+        user_id: self.user_id
+      })
     end
 
 end

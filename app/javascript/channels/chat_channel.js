@@ -1,9 +1,9 @@
 import consumer from "./consumer"
+import Message  from '../packs/messages/lib'
 
 consumer.subscriptions.create("ChatChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
-    console.log("Connected to the room!");
   },
 
   disconnected() {
@@ -11,6 +11,8 @@ consumer.subscriptions.create("ChatChannel", {
   },
 
   received(data) {
-    console.log(data);
+    const current_user = $('#current-user').text()
+    if (current_user != data.user_id)
+      Message.add(data)
   }
 });

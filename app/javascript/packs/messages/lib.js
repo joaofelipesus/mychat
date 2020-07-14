@@ -26,17 +26,18 @@ const Message = {
   add(message){
     const current_user = $('#current-user').text()
     let message_element = null
-    if (current_user == message.user_id)
+    if (current_user == message.user_id){
       message_element = `
         <div class='message right-align'>
           ${message.body}
         </div>`
-    else
+    }else{
       message_element = `
         <div class="message">
           <span class='login-${message.user_id}'>${message.user.name}:</span>
           ${message.body}
         </div>`
+    }
     $('#chat').append(message_element)
     let login_color_relation = $('#login-color-relation')
     if(login_color_relation.length > 0){
