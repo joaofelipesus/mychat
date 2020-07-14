@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :groups, only: [:create, :destroy]
   devise_for :users, controllers: { registrations: 'registrations' }
   get '/:slug', to: 'teams#show', as: :show_team
+  mount ActionCable.server => '/cable'
 end

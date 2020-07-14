@@ -26,17 +26,18 @@ const Message = {
   add(message){
     const current_user = $('#current-user').text()
     let message_element = null
-    if (current_user == message.user_id)
+    if (current_user == message.user_id){
       message_element = `
         <div class='message right-align'>
           ${message.body}
         </div>`
-    else
+    }else{
       message_element = `
         <div class="message">
           <span class='login-${message.user_id}'>${message.user.name}:</span>
           ${message.body}
         </div>`
+    }
     $('#chat').append(message_element)
     let login_color_relation = $('#login-color-relation')
     if(login_color_relation.length > 0){
@@ -45,11 +46,10 @@ const Message = {
         $(`.login-${message.user_id}`).addClass(relation[`login-${message.user_id}`])
       }else{
         relation[`login-${message.user_id}`] = COLORS[Object.keys(relation).length]
-        // $(`.login-${message.user_id}`).addClass(COLORS[Object.keys(relation).length])
         $('#login-color-relation').text(JSON.stringify(relation))
       }
     }else{
-      $('body').append(`<span id='login-color-relation'></span>`)
+      $('body').append(`<span id='login-color-relation' hidden></span>`)
       let relation = {}
       relation[`login-${message.user_id}`] = COLORS[0]
       $('#login-color-relation').text(JSON.stringify(relation))
@@ -65,7 +65,6 @@ const Message = {
       dataType: 'json',
       success: response => {
         const messages = response["messages"]
-        console.log(messages);
         messages.forEach(message => Message.add(message))
       },
       error: response => {
