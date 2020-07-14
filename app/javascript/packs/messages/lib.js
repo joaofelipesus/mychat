@@ -12,7 +12,8 @@ const Message = {
       method: 'POST',
       success: response => {
         $('#message_body').val('')
-        // TODO: Load message to chat ...
+        const message_delivered = response.message
+        Message.add(message_delivered)
       },
       error: response => {
         M.toast({ html: response["errors"][0], classes: 'red' })
@@ -24,7 +25,7 @@ const Message = {
     const current_user = $('#current-user').text()
     let message_element = null
     if (current_user == message.user_id)
-      message_element = `<div class='message right'>${message.body}</div>`
+      message_element = `<div class='message right-align'>${message.body}</div>`
     else
       message_element = `<div class="message">${message.body}</div>`
     $('#chat').append(message_element)
