@@ -30,7 +30,6 @@
   </li>
 </ul>
 
-
 <ul id="dropdown1" class="dropdown-content">
   <% current_user.my_teams.each do |team| %>
     <li>
@@ -40,5 +39,6 @@
   <li class="divider"></li>
 </ul>
 
+<span id="current-user" hidden><%= current_user.id %></span>
 <%= render 'teams/destroy_modal' %>
 <%= render 'team_users/pending_modal' %>
