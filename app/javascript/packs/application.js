@@ -6,8 +6,9 @@
 import 'materialize-css/dist/js/materialize'
 import 'jquery/dist/jquery'
 
-require('packs/navbars/sidebar')
+require('packs/messages/lib')
 require('packs/teams/show')
+require('packs/navbars/sidebar')
 require('packs/team_users/pending_modal')
 require('packs/team_users/new_modal')
 require('packs/groups/destroy_modal')

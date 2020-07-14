@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.where(group_id: params[:group]).order(:created_at)
     authorize! :read, @messages.last
-    render json: { messages: @messages }, status: :ok
+    render json: { messages: @messages }, status: :ok, include: [:user]
   end
 
   def create
