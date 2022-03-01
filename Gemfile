@@ -22,7 +22,7 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Active Storage variant
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 # Flexible authentication solution for Rails with Warden
 gem 'devise'
 # The authorization Gem for Ruby on Rails.
